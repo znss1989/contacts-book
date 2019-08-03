@@ -34,7 +34,7 @@ router.put('/:id', (req, res) => {
  * @desc Get all of contacts of user
  * @access Private
  */
-router.delete('/', (req, res) => {
+router.delete('/:id', (req, res) => {
   res.send("Delete contact");
 });
 
