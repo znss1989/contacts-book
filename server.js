@@ -5,6 +5,9 @@ const connectDB = require('./config/connectDB');
 const app = express();
 connectDB();
 
+// middleware(s)
+app.use(express.json({ extended: false }));
+
 app.get('/', (req, res) => {
   res.json({
     msg: "Welcome to contacts-book API"
