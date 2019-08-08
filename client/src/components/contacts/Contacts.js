@@ -6,19 +6,26 @@ import ContactItem from './ContactItem';
 const Contacts = () => {
   const contactContext = useContext(ContactContext);
 
-  const { contacts } = contactContext;
+  const { contacts, filtered } = contactContext;
 
+  const contactToItem = contact => (
+    <ContactItem
+      key={ contact.id }
+      contact={ contact } 
+    />
+  );
 
   return (
+    contacts.length === 0 ?
+    <h4>Please add a contact</h4> :
     <Fragment>
-      { contacts.map(contact => (
-        <ContactItem
-          key={ contact.id }
-          contact={ contact } 
-        />
-      )) }
+      { 
+        filtered === null ?
+        contacts.map(contactToItem) :
+        filtered.map(contactToItem)
+      }
     </Fragment>
-  )
+  );
 };
 
 export default Contacts;

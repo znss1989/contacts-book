@@ -40,7 +40,7 @@ const ContactState = props => {
       },
     ],
     current: null,
-    filtered: []
+    filtered: null
   };
 
   const [state, dispatch] = useReducer(contactReucer, initialState);
