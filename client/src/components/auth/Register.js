@@ -1,9 +1,20 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import AlertContext from '../../context/alert/alertContext';
+import AuthContext from '../../context/auth/authContext';
 
 const Register = () => {
   const alertContext = useContext(AlertContext);
   const { setAlert } = alertContext;
+
+  const authContext = useContext(AuthContext);
+  const { error, register, clearErrors } = authContext;
+
+  useEffect(() => {
+    if (error === "User already exists") {
+      setAlert('danger', error);
+      clearErrors();
+    }
+  }, [error]);
 
   const [user, setUser] = useState({
     name: '',
@@ -35,7 +46,11 @@ const Register = () => {
       setAlert('danger', "Password too short, at least 6 characters required");
       return;
     }
-    console.log("Register submitted");
+    register({
+      name,
+      email,
+      password
+    });
   };
 
   return (
