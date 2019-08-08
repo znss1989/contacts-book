@@ -12,6 +12,11 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Home from './components/pages/Home';
 import About from './components/pages/About';
+import setAuthToken from './utils/setAuthToken';
+
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
 function App() {
   return (
