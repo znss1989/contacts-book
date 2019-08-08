@@ -53,6 +53,13 @@ const ContactState = props => {
     });
   };
 
+  const updateContact= contact => {
+    dispatch({
+      type: UPDATE_CONTACT,
+      payload: contact
+    });
+  }
+
   const deleteContact = id => {
     dispatch({
       type: DELETE_CONTACT,
@@ -79,6 +86,7 @@ const ContactState = props => {
         contacts: state.contacts,
         current: state.current,
         addContact,
+        updateContact,
         deleteContact,
         setCurrent,
         clearCurrent
