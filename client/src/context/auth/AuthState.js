@@ -68,7 +68,11 @@ const AuthState = props => {
     }
   };
 
-  const logout = () => {};
+  const logout = () => {
+    dispatch({
+      type: LOGOUT
+    });
+  };
 
   const loadUser = async () => {
     if (localStorage.token) {
