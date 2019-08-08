@@ -3,14 +3,14 @@ import ContactContext from '../../context/contact/contactContext';
 
 const ContactForm = () => {
   const contactContext = useContext(ContactContext);
+  const { current, addContact, updateContact, clearCurrent } = contactContext;
+
   const [contact, setContact] = useState({
     name: '',
     email: '',
     phone: '',
     type: 'personal'
   });
-
-  const { current, addContact, updateContact, clearCurrent } = contactContext;
   const { name, email, phone, type } = contact;
   
   useEffect(() => {
@@ -24,7 +24,7 @@ const ContactForm = () => {
         type: 'personal'
       });
     }
-  }, [current]);
+  }, [current, contactContext]);
 
   const handleChange = event => setContact({
     ...contact,
