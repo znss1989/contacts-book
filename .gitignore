@@ -4,6 +4,7 @@ node_modules/
 /client/node_modules
 /client/.pnp
 /client/.pnp.js
+/config/default.json
 
 # testing
 /client/coverage
