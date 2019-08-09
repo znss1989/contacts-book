@@ -5,6 +5,9 @@ import ContactContext from './contactContext';
 import contactReucer from './contactReducer';
 
 import { 
+  SET_LOADING,
+  GET_CONTACTS,
+  CLEAR_CONTACTS,
   ADD_CONTACT,
   DELETE_CONTACT,
   CONTACT_ERROR,
@@ -20,18 +23,40 @@ const ContactState = props => {
     contacts: [],
     current: null,
     filtered: null,
-    error: null
+    error: null,
+    loading: false
   };
 
   const [state, dispatch] = useReducer(contactReucer, initialState);
 
   // action creators
+  const getContacts = async () => {
+    try {
+      dispatch({
+        type: SET_LOADING
+      });
+      const res = await axios.get('/api/contacts');
+      dispatch({
+        type: GET_CONTACTS,
+        payload: res.data
+      });
+    } catch (err) {
+      dispatch({
+        type: CONTACT_ERROR,
+        payload: err.response.msg
+      });
+    }
+  };
+
   const addContact = async contact => {
     const config = { 
       headers: { 'Content-Type': 'application/json' }
     };
 
     try {
+      dispatch({
+        type: SET_LOADING
+      });
       const res = await axios.post('/api/contacts', contact, config);
       dispatch({
         type: ADD_CONTACT,
@@ -88,10 +113,12 @@ const ContactState = props => {
   return (
     <ContactContext.Provider
       value={{
+        loading: state.loading,
         contacts: state.contacts,
         current: state.current,
         filtered: state.filtered,
         error: state.error,
+        getContacts,
         addContact,
         updateContact,
         deleteContact,
