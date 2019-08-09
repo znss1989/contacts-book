@@ -77,10 +77,10 @@ const ContactState = props => {
     });
   }
 
-  const deleteContact = id => {
+  const deleteContact = _id => {
     dispatch({
       type: DELETE_CONTACT,
-      payload: id
+      payload: _id
     });
   };
 
