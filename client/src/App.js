@@ -1,7 +1,6 @@
 import React, { Fragment} from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import '@fortawesome/fontawesome-free/css/all.min.css';
 import './App.css';
 import AuthState from './context/auth/AuthState';
 import AlertState from './context/alert/AlertState';
